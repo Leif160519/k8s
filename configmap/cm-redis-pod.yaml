@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod-redis
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+      - name: config-volume
+        mountPath: /etc/config
+  volumes:
+    - name: config-volume
+      configMap:
+        name: redis-config
+  restartPolicy: Never
